@@ -1,0 +1,93 @@
+<div class="row">
+    <span *ngIf="editMode; else addMode"><h3>Edit Receipe</h3></span>
+    <ng-template #addMode><h2>Add Receipe</h2></ng-template>
+      <hr>
+  <div class="col-xs-12">
+    <form [formGroup]="receipeForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12" class="form-group">
+          <label for="name" class="col-form-label">Name</label>
+          <input
+            class="form-control"
+            type="text"
+            name="name"
+            id="name"
+            formControlName="name"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" class="form-group">
+          <label for="imagePath">Image URL</label>
+          <input
+            class="form-control"
+            type="text"
+            name="imagePath"
+            id="imagePath"
+            formControlName="imagePath"
+            #imagePath
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12"><img [src]="imagePath.value" class="img-responsive" /></div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" class="form-group">
+          <label for="description">Descritpion</label>
+          <textarea
+            class="form-control"
+            type="text"
+            name="description"
+            rows="6"
+            id="description"
+            formControlName="description"
+          ></textarea>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12" class="form-group" formArrayName="ingredients">
+          <div
+            class="row"
+            *ngFor= "let ingredientsControl of getFormIngredients().controls;let i = index"
+            [formGroupName]="i"
+            style="margin-top: 10px">
+            <div class="col-xs-8">
+              <input
+                class="form-control"
+                type="text"
+                name="name"
+                id="name"
+                formControlName="name"
+              />
+            </div>
+            <div class="col-xs-2">
+              <input
+                class="form-control"
+                type="number"
+                name="amount"
+                id="mount"
+                formControlName="amount"
+              />
+            </div>
+            <div class="col-xs-2 right">
+              <button type="button" class="btn btn-danger" (click)="onDeleteIngredient(i)">X</button>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 10px">
+            <div class="col-xs-12">
+              <button type="button" class="btn btn-success" (click)="addIngredient()">Add Ingrdient</button>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+              <div class="col-xs-12 btn-toolbar">
+                <button class="btn btn-success" [disabled]="!receipeForm.valid">Save</button>
+                <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
+              </div>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

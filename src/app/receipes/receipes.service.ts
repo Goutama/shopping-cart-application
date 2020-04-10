@@ -16,14 +16,14 @@ export class ReceipesService {
     new Receipe(
       "Chitrana",
       "This is south karnataka food",
-      "https://i.ytimg.com/vi/bsW_RfPbgek/maxresdefault.jpg",
+      "assets/images/chitrana.jpg",
       [new Ingredient ('Rice', 3),new Ingredient ('Leamon', 2)]
     ),
     // tslint:disable-next-line:max-line-length
     new Receipe(
       "Jolada Roti",
       "This is north karnataka food",
-      "http://www.dietfruitfully.com/wp-content/uploads/2016/10/IMG_3917-600x388.jpg",
+      "assets/images/jolada_rotti.jpg",
       [new Ingredient ('Rice', 2),new Ingredient ('Leamon', 5)]
     )
   ];
